@@ -11,7 +11,7 @@ Package: python-django-statistics
 Section: python
 Priority: extra
 Architecture: all
-Depends: ${misc:Depends}, ${python:Depends} , python-django, python-django-tracking
+Depends: ${misc:Depends}, ${python:Depends} , python-django, python-django-tracking, python-geoip
 Provides: ${python:Provides}
 Description: Semplice tool per tracciare in Django le statistiche delle visite
  .
