@@ -1,3 +1,9 @@
+django-statistics (0.2.3) unstable; urgency=low
+
+  * modified admin.py
+
+ -- Matteo Atti <matteo.atti@aderit.it>  Fri, 12 Jul 2012 11:53:35 +0200
+
 django-statistics (0.2.2) unstable; urgency=low
 
   * capitalize months 

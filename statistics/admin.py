@@ -83,7 +83,8 @@ class StatisticsMonthYearAdmin(admin.ModelAdmin):
     actions = [export_as_csv_action("CSV Export", fields=['anno','mese','address','number'])]
 
 class MonthsAdmin(admin.ModelAdmin):
-    list_display = ['nome','numero']
+    list_display = ['numero','nome']
+    list_editable = ('nome',)
     inlines = [StatisticsMonthYearInline]
 
 class DaysPastAdmin(admin.ModelAdmin):
