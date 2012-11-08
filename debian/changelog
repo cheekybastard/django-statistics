@@ -1,3 +1,13 @@
+django-statistics (0.2.5) unstable; urgency=low
+
+  * NMU: re-built for wheezy
+  * Better Logging
+  * Removed GeoLiteCity database (too big), must set it in settings
+  * Translated Months in English for better compatibility and for show graphs in admin
+  * Removed exporting csv in admin because it exists in ContribAderit already :D
+
+ -- Matteo Atti <matteo.atti@aderit.it>  Wed, 8 Nov 2012 15:04:20 +0100
+
 django-statistics (0.2.4) unstable; urgency=low
 
   * modified admin.py again

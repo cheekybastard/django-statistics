@@ -5,16 +5,18 @@ from tracking.models import Visitor
 from django.db.models.signals import post_init, post_save
 from django.contrib.sites.models import Site
 from django.conf import settings
+from django.utils.log import getLogger
 import datetime
-import logging
+
+log = getLogger('statistics.models')
+
 try:
     import GeoIP
 except Exception, e:
-    logging.error("Install python-geoip for tracking GeoIP Data -- %s", e)
+    log.error("Install python-geoip for tracking GeoIP Data -- %s", e)
     pass
 
 
-log = logging.getLogger('statistics.models')
 
 untrack_list = ["/favicon","/dajax","/jsi18n","/captcha","/static/","/admin/","/robots.txt/","/sso/"]
 untrack = getattr(settings, 'STATISTICS_UNTRACK_URLS', untrack_list)
@@ -45,12 +47,12 @@ def log_visit(visitor, stored_fields=['url',
     ldata.append(('site', Site.objects.get_current()))
     ldata.append(('username', user))
     try:
-        geoip_file_default = "/usr/share/pyshared/statistics/GeoLiteCity.dat"
-        geoip_file = getattr(settings, 'GEO_CITY_LIGHT_FILE', geoip_file_default)
+        geoip_file = getattr(settings, 'GEO_CITY_LIGHT_FILE', "")
         gi = GeoIP.open(geoip_file,GeoIP.GEOIP_STANDARD)
         ldata.append(('geoip_data', gi.record_by_addr(visitor.ip_address)))
+        # log.debug(ldata)
     except Exception, e:
-        logging.error(e)
+        log.error("In geoip track (missing GeoLiteCity.dat ??): %s", e)
     data = tuple(ldata)
     
     save_to = True
@@ -118,7 +120,7 @@ def log_statistic(visit, stored_fields=[]):
     day = datetime.datetime.now().day
     address = str(visit.site) + visit.url
     if len(StatisticsDates.objects.filter(year=int(year), address=address)) == 0:
-        logging.error("nuovo anno o nuovo indirizzo, creo tutto nuovo da 1")
+        #logging.error("nuovo anno o nuovo indirizzo, creo tutto nuovo da 1")
         newstatistics = StatisticsDates()
         newstatistics.year = year
         newstatistics.month = month

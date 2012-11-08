@@ -7,18 +7,15 @@ from django.http import HttpResponse
 from datetime import datetime, timedelta, date
 import csv
 
+"""
 def export_as_csv_action(description="Export selected objects as CSV file",
                          fields=None, exclude=None, header=True):
-    """
-    This function returns an export csv action
-    'fields' and 'exclude' work like in django ModelForm
-    'header' is whether or not to output the column names as the first row
-    """
+    # This function returns an export csv action
+    # 'fields' and 'exclude' work like in django ModelForm
+    # 'header' is whether or not to output the column names as the first row
     def export_as_csv(modeladmin, request, queryset):
-        """
-        Generic csv export admin action.
-        based on http://djangosnippets.org/snippets/1697/
-        """
+        # Generic csv export admin action.
+        # based on http://djangosnippets.org/snippets/1697/
         opts = modeladmin.model._meta
         field_names = set([field.name for field in opts.fields])
         if fields:
@@ -39,6 +36,7 @@ def export_as_csv_action(description="Export selected objects as CSV file",
         return response
     export_as_csv.short_description = description
     return export_as_csv
+"""
 
 def clean_all_past_visits(self, request, queryset):
     try:
@@ -67,11 +65,12 @@ class VisitAdmin(admin.ModelAdmin):
     list_display = ['site', 'url', 'username', 'ip_address', 'user_agent', 'geoip_data', 'created']
     list_filter = ('username', 'created','site')
     search_fields = ['site', 'url', 'username', 'ip_address', 'user_agent']
-    actions = [clean_all_not_logged_users,clean_all_past_visits,export_as_csv_action("CSV Export", fields=['site','url','username','ip_address','created'])]
+    actions = [clean_all_not_logged_users,clean_all_past_visits]
+    # actions = [clean_all_not_logged_users,clean_all_past_visits,export_as_csv_action("CSV Export", fields=['site','url','username','ip_address','created'])]
 
 class StatisticsDatesAdmin(admin.ModelAdmin):
     list_display = ['address','total_access_day','total_access_month','total_access_year','year']
-    actions = [export_as_csv_action("CSV Export", fields=['address','total_access_year'])]
+    # actions = [export_as_csv_action("CSV Export", fields=['address','total_access_year'])]
 
 class StatisticsMonthYearInline(admin.TabularInline):
     model = StatisticsMonthYear
@@ -80,7 +79,7 @@ class StatisticsMonthYearAdmin(admin.ModelAdmin):
     list_display = ['anno','mese','address','number']
     search_fields = ['address','mese__nome']
     list_filter = ('mese__nome',)
-    actions = [export_as_csv_action("CSV Export", fields=['anno','mese','address','number'])]
+    # actions = [export_as_csv_action("CSV Export", fields=['anno','mese','address','number'])]
 
 class MonthsAdmin(admin.ModelAdmin):
     list_display = ['numero','nome']

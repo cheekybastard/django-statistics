@@ -1,11 +1,11 @@
 Source: django-statistics
 Section: python
 Priority: extra
-Build-Depends: debhelper (>= 7.0.50~), quilt
-Build-Depends-Indep: python-support (>= 1.0)
+Build-Depends: debhelper (>= 9)
+Build-Depends-Indep: python-support (>= 1.0), python
 Maintainer: Matteo Atti <matteo.atti@servabit.it>
-Standards-Version: 3.8.0
-XS-Python-Version: >= 2.6
+Standards-Version: 3.9.3
+X-Python-Version: >= 2.6
 
 Package: python-django-statistics
 Section: python
@@ -13,6 +13,6 @@ Priority: extra
 Architecture: all
 Depends: ${misc:Depends}, ${python:Depends} , python-django, python-django-tracking, python-geoip
 Provides: ${python:Provides}
-Description: Semplice tool per tracciare in Django le statistiche delle visite
+Description: Semplice tool per le visite
  .
-
+ Semplice tool per tracciare in Django le statistiche delle visite

@@ -44,33 +44,33 @@ class VisitHistorySum(template.Node):
             year = datetime.datetime.now().year
             results = StatisticsMonthYear.objects.filter(anno=year)
             #mesi = Months.objects.all()
-            Gennaio = 0
-            Febbraio = 0
-            Marzo = 0
-            Aprile = 0
-            Maggio = 0
-            Giugno = 0
-            Luglio = 0
-            Agosto = 0
-            Settembre = 0
-            Ottobre = 0
-            Novembre = 0
-            Dicembre = 0
+            January = 0
+            February = 0
+            March = 0
+            April = 0
+            May = 0
+            June = 0
+            July = 0
+            August = 0
+            September = 0
+            October = 0
+            November = 0
+            December = 0
             for i in results:
-                if i.mese.nome == "Gennaio": Gennaio += i.number
-                if i.mese.nome == "Febbraio": Febbraio += i.number
-                if i.mese.nome == "Marzo": Marzo += i.number
-                if i.mese.nome == "Aprile": Aprile += i.number
-                if i.mese.nome == "Maggio": Maggio += i.number
-                if i.mese.nome == "Giugno": Giugno += i.number
-                if i.mese.nome == "Luglio": Luglio += i.number
-                if i.mese.nome == "Agosto": Agosto += i.number
-                if i.mese.nome == "Settembre": Settembre += i.number
-                if i.mese.nome == "Ottobre": Ottobre += i.number
-                if i.mese.nome == "Novembre": Novembre += i.number
-                if i.mese.nome == "Dicembre": Dicembre += i.number
+                if i.mese.nome == "January": January += i.number
+                if i.mese.nome == "February": February += i.number
+                if i.mese.nome == "March": March += i.number
+                if i.mese.nome == "April": April += i.number
+                if i.mese.nome == "May": May += i.number
+                if i.mese.nome == "June": June += i.number
+                if i.mese.nome == "July": July += i.number
+                if i.mese.nome == "August": August += i.number
+                if i.mese.nome == "September": September += i.number
+                if i.mese.nome == "October": October += i.number
+                if i.mese.nome == "November": November += i.number
+                if i.mese.nome == "December": December += i.number
             #logging.error("MESI %s %s %s %s %s %s %s %s %s", Gennaio, Febbraio, Marzo, Aprile, Maggio, Giugno, Luglio, Agosto, Settembre)
-            results = [("Gennaio", Gennaio),("Febbraio", Febbraio),("Marzo", Marzo),("Aprile", Aprile),("Maggio", Maggio),("Giugno", Giugno),("Luglio", Luglio),("Agosto", Agosto),("Settembre", Settembre),("Ottobre", Ottobre),("Novembre", Novembre),("Dicembre", Dicembre)]
+            results = [("January", January),("February", February),("March", March),("April", April),("May", May),("June", June),("July", July),("August", August),("September", September),("October", October),("November", November),("December", December)]
             #logging.error(results)
         except Exception, e:
             logging.error(e)

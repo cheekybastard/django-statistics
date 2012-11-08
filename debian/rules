@@ -7,6 +7,6 @@ include /usr/share/python/python.mk
 #	cp -rf $(CURDIR)/visitor/templatetags $(CURDIR)/debian/python-django-visitor$(py_libdir_sh)/visitor/
 
 %:
-	dh $@
+	dh --with python2 $@
 
 
