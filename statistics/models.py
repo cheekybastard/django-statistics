@@ -201,7 +201,11 @@ def log_statistic(visit, stored_fields=[]):
 	    if created:
 		mese.nome = datetime.datetime.now().strftime('%B').capitalize()
 		mese.save()
-            stat = StatisticsMonthYear.objects.get(address=address, anno=year, mese=mese)
+            try:
+                stat = StatisticsMonthYear.objects.get(address=address, anno=year, mese=mese)
+            except Exception, e:
+                log.error("What Have you done?? new day -- %s", e)
+                stat = StatisticsMonthYear.objects.create(address=address, anno=year, mese=mese, number=0)
             stat.number += 1
             stat.save()
             #Visit.objects.get(id=visit.id).delete()
@@ -209,7 +213,11 @@ def log_statistic(visit, stored_fields=[]):
 
 
 def visit_post_save(sender, **kwargs):
-    log_statistic(kwargs['instance'])
+    try:
+        log_statistic(kwargs['instance'])
+    except Exception, e:
+        log.error("In Exc Statistics -- %s", e)
+        pass
     
 
 post_save.connect(visit_post_save, sender=Visit)

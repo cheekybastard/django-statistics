@@ -1,3 +1,9 @@
+django-statistics (0.2.5.1) unstable; urgency=low
+
+  * Solved bug if change day
+
+ -- Matteo Atti <matteo.atti@aderit.it>  Wed, 9 Nov 2012 15:04:20 +0100
+
 django-statistics (0.2.5) unstable; urgency=low
 
   * NMU: re-built for wheezy
